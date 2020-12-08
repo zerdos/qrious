@@ -22,7 +22,6 @@
 module.exports = function(grunt) {
   var commonjs = require('rollup-plugin-commonjs');
   var nodeResolve = require('rollup-plugin-node-resolve');
-  var uglify = require('rollup-plugin-uglify');
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -41,6 +40,7 @@ module.exports = function(grunt) {
     rollup: {
       umdDevelopment: {
         options: {
+          name: "QRious",
           format: 'umd',
           moduleId: 'qrious',
           moduleName: 'QRious',
@@ -75,36 +75,6 @@ module.exports = function(grunt) {
         },
         files: {
           'dist/qrious.js': 'src/QRious.js'
-        }
-      },
-      umdProduction: {
-        options: {
-          format: 'umd',
-          moduleId: 'qrious',
-          moduleName: 'QRious',
-          sourceMap: true,
-          sourceMapRelativePaths: true,
-          banner: [
-            '/*! QRious v<%= pkg.version %> | (C) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> | GPL v3 License',
-            'Based on jsqrencode | (C) 2010 tz@execpc.com | GPL v3 License',
-            '*/'
-          ].join('\n'),
-          plugins: function() {
-            return [
-              nodeResolve(),
-              commonjs(),
-              uglify({
-                output: {
-                  comments: function(node, comment) {
-                    return comment.type === 'comment2' && /^\!/.test(comment.value);
-                  }
-                }
-              })
-            ];
-          }
-        },
-        files: {
-          'dist/qrious.min.js': 'src/QRious.js'
         }
       }
     }

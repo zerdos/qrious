@@ -19,7 +19,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global.QRious = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.QRious = factory());
 }(this, (function () { 'use strict';
 
   /*
@@ -1551,14 +1551,6 @@
   var Frame_1 = Frame;
 
   /**
-   * The options used by {@link Frame}.
-   *
-   * @typedef {Object} Frame~Options
-   * @property {string} level - The ECC level to be used.
-   * @property {string} value - The value to be encoded.
-   */
-
-  /**
    * An implementation of {@link Renderer} for working with <code>img</code> elements.
    *
    * This depends on {@link CanvasRenderer} being executed first as this implementation simply applies the data URL from
@@ -1672,15 +1664,6 @@
   });
 
   var Option_1 = Option;
-
-  /**
-   * Returns a transformed value for the specified <code>value</code> to be applied for the <code>option</code> provided.
-   *
-   * @callback Option~ValueTransformer
-   * @param {*} value - the value to be transformed
-   * @param {Option} option - the {@link Option} for which <code>value</code> is being transformed
-   * @return {*} The transform value.
-   */
 
   /**
    * Contains utility methods that are useful throughout the library.
@@ -1985,16 +1968,6 @@
   var OptionManager_1 = OptionManager;
 
   /**
-   * Called whenever the value of a modifiable {@link Option} is changed on a target object via the defined property's
-   * setter.
-   *
-   * @callback OptionManager~ChangeHandler
-   * @param {*} value - the new value for <code>option</code> on the target object
-   * @param {Option} option - the modifable {@link Option} whose value has changed on the target object.
-   * @return {void}
-   */
-
-  /**
    * A basic manager for {@link Service} implementations that are mapped to simple names.
    *
    * @public
@@ -2197,26 +2170,9 @@
 
   });
 
-  var QRious_1$2 = QRious;
+  var QRious_1 = QRious;
 
-  /**
-   * The options used by {@link QRious}.
-   *
-   * @typedef {Object} QRious~Options
-   * @property {string} [background="white"] - The background color to be applied to the QR code.
-   * @property {number} [backgroundAlpha=1] - The background alpha to be applied to the QR code.
-   * @property {*} [element] - The element to be used to render the QR code which may either be an <code>canvas</code> or
-   * <code>img</code>. The element(s) will be created if needed.
-   * @property {string} [foreground="black"] - The foreground color to be applied to the QR code.
-   * @property {number} [foregroundAlpha=1] - The foreground alpha to be applied to the QR code.
-   * @property {string} [level="L"] - The error correction level to be applied to the QR code.
-   * @property {string} [mime="image/png"] - The MIME type to be used to render the image for the QR code.
-   * @property {number} [padding] - The padding for the QR code in pixels.
-   * @property {number} [size=100] - The size of the QR code in pixels.
-   * @property {string} [value=""] - The value to be encoded within the QR code.
-   */
-
-  var index = QRious_1$2;
+  var qriousCore = QRious_1;
 
   /**
    * Defines a service contract that must be met by all implementations.
@@ -2352,12 +2308,10 @@
 
   var BrowserElementService_1 = BrowserElementService;
 
-  index.use(new BrowserElementService_1());
+  qriousCore.use(new BrowserElementService_1());
 
-  var QRious_1 = index;
+  var QRious_1$1 = qriousCore;
 
-  return QRious_1;
+  return QRious_1$1;
 
 })));
-
-//# sourceMappingURL=qrious.js.map
