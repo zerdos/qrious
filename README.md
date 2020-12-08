@@ -8,6 +8,9 @@
      "Y888888"  888   T88b 888  "Y88P"   "Y88888  88888P'
            Y8b
 
+
+[![Chat](https://img.shields.io/gitter/room/neocotic/qrious.svg?style=flat-square)](https://unpkg.com/@zedvision/qrious/demo.html)
+
 [QRious](https://github.com/neocotic/qrious) is a pure JavaScript library for generating QR codes using HTML5 canvas.
 
 [![Chat](https://img.shields.io/gitter/room/neocotic/qrious.svg?style=flat-square)](https://gitter.im/neocotic/qrious)
